@@ -2,7 +2,7 @@
 //============================================================+
 // File name   : example_057.php
 // Begin       : 2010-04-03
-// Last Update : 2010-08-08
+// Last Update : 2010-10-05
 //
 // Description : Example 057 for TCPDF class
 //               Cell vertical alignments
@@ -11,10 +11,10 @@
 //
 // (c) Copyright:
 //               Nicola Asuni
-//               Tecnick.com s.r.l.
-//               Via Della Pace, 11
-//               09044 Quartucciu (CA)
-//               ITALY
+//               Tecnick.com LTD
+//               Manor Coach House, Church Hill
+//               Aldershot, Hants, GU12 4RQ
+//               UK
 //               www.tecnick.com
 //               info@tecnick.com
 //============================================================+
@@ -24,9 +24,6 @@
  * @package com.tecnick.tcpdf
  * @abstract TCPDF - Example: Cell vertical alignments
  * @author Nicola Asuni
- * @copyright 2004-2009 Nicola Asuni - Tecnick.com S.r.l (www.tecnick.com) Via Della Pace, 11 - 09044 - Quartucciu (CA) - ITALY - www.tecnick.com - info@tecnick.com
- * @link http://tcpdf.org
- * @license http://www.gnu.org/copyleft/lesser.html LGPL
  * @since 2008-03-04
  */
 
@@ -128,6 +125,37 @@ $pdf->Line(15, 120, 195, 120, $linestyle);
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+// Print an image to explain cell measures
+
+$pdf->Image('../images/tcpdf_cell.png', 15, 160, 100, 100, 'PNG', '', '', false, 300, '', false, false, 0, false, false, false);
+$legend = 'LEGEND:
+
+X: cell x top-left origin (top-right for RTL)
+Y: cell y top-left origin (top-right for RTL)
+CW: cell width
+CH: cell height
+LW: line width
+NRL: normal line position
+EXT: external line position
+INT: internal line position
+ML: margin left
+MR: margin right
+MT: margin top
+MB: margin bottom
+PL: padding left
+PR: padding right
+PT: padding top
+PB: padding bottom
+TW: text width
+FA: font ascent
+FB: font baseline
+FD: font descent';
+$pdf->SetFont('helvetica', '', 10);
+$pdf->setCellHeightRatio(1.25);
+$pdf->MultiCell(0, 0, $legend, 0, 'L', false, 1, 125, 160, true, 0, false, true, 0, 'T', false);
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 // CELL BORDERS
 
 // add a page
@@ -140,13 +168,16 @@ $pdf->Write(0, 'Example of borders for Cell()', '', 0, 'L', true, 0, false, fals
 $pdf->SetFont('helvetica', '', 11);
 
 // set border width
-$pdf->SetLineWidth(1);
+$pdf->SetLineWidth(0.508);
 
 // set color for cell border
 $pdf->SetDrawColor(0,128,255);
 
 // set filling color
 $pdf->SetFillColor(255,255,128);
+
+// set cell height ratio
+$pdf->setCellHeightRatio(3);
 
 $pdf->Cell(30, 0, '1', 1, 1, 'C', 1, '', 0, false, 'T', 'C');
 $pdf->Ln(2);
